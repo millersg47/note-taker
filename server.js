@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
-const html = require('/.routes/htmlRoutes.js');
+const html = require('./routes/htmlRoutes.js');
 const api = require('./routes/apiRoutes.js');
 
 const app = express();
@@ -12,9 +12,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
-
 app.use('/', html);
 app.use('/api', api);
+
 
 
 app.listen(PORT, () =>
