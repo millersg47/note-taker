@@ -1,4 +1,5 @@
 const express = require('express');
+const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 
 const api = express.Router();
@@ -6,7 +7,7 @@ const api = express.Router();
 //get request to pull notes from database
 api.get('/notes', (req, res) => {
     console.info(`${req.method} request received for notes`);
-    fs.readFile('../db/db.json').then((data) => res.json(JSON.parse(data)));
+    fs.readFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
 });
 
 //post request to add a new note to database
@@ -18,11 +19,15 @@ api.post('/notes', (req, res) => {
     if(req.body) {
         
         const { title, text } = req.body;
-        const newNote = {title, text};
+        const newNote = {
+            title, 
+            text, 
+            note_id: uuidv4(),
+        };
         res.json('Note added');
         
         //reading the existing db file, adding the newNote and then rewriting file
-        fs.readFile('../db/db.json', 'utf8', (err, data) => {
+        fs.readFile('./db/db.json', 'utf8', (err, data) => {
             if (err) {
               console.error(err);
             } else {

@@ -1,8 +1,8 @@
-const fs = require('fs');
-const path = require('path');
 const express = require('express');
+const uuid = require('uuid');
 const html = require('./routes/htmlRoutes.js');
 const api = require('./routes/apiRoutes.js');
+
 
 const app = express();
 const PORT = 3001;
