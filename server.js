@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
+const html = require('/.routes/htmlRoutes.js');
+const api = require('./routes/apiRoutes.js');
 
 const app = express();
 const PORT = 3001;
@@ -11,11 +13,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
-
-//redirects to notes.html file on click
-app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '/public/notes.html')));
-
+app.use('/', html);
+app.use('/api', api);
 
 
 app.listen(PORT, () =>

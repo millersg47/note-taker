@@ -1,11 +1,12 @@
 const path = require('path');
 const express = require('express');
 
-const app = express();
+const html = express();
 
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
+//loads index.html on page load
+html.get('', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 
-//redirects to notes.html file on click
-app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '/public/notes.html')));
+//redirects to notes.html file on button click
+html.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '/public/notes.html')));
 
-module.exports = router;
+module.exports = html;
