@@ -1,13 +1,13 @@
 const express = require('express');
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
-
+const util = require('util');
 const api = express.Router();
 
 //get request to pull notes from database
 api.get('/notes', (req, res) => {
     console.info(`${req.method} request received for notes`);
-    fs.readFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
+    util.promisify(fs.readFile)('./db/db.json').then((data) => res.json(JSON.parse(data)));
 });
 
 //post request to add a new note to database
@@ -22,7 +22,7 @@ api.post('/notes', (req, res) => {
         const newNote = {
             title, 
             text, 
-            note_id: uuidv4(),
+            id: uuidv4(),
         };
         res.json('Note added');
         
@@ -56,7 +56,6 @@ api.post('/notes', (req, res) => {
 
 api.delete('/notes', (req, res) => {
     console.info(`${req.method} request received to delete a note`);
-
 });
 
 

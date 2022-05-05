@@ -1,11 +1,10 @@
 const express = require('express');
-const uuid = require('uuid');
 const html = require('./routes/htmlRoutes.js');
 const api = require('./routes/apiRoutes.js');
 
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT||3001;
 
 //middleware to parse JSON and urlencoded form data
 app.use(express.json());

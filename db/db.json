@@ -6,6 +6,11 @@
     {
         "title": "Note 1",
         "text": "This is a description of note 1",
-        "note_id": "a67056c9-e232-4ff7-9f7e-a67622623fdf"
+        "id": "a67056c9-e232-4ff7-9f7e-a67622623fdf"
+    },
+    {
+        "title": "Note 2",
+        "text": "Note 2Description",
+        "id": "048ef0d3-80f3-4227-a41b-4970fd04d196"
     }
 ]
