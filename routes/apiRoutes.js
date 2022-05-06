@@ -4,10 +4,12 @@ const fs = require('fs');
 const util = require('util');
 const api = express.Router();
 
+const readFile = util.promisify(fs.readFile);
+
 //get request to pull notes from database
 api.get('/notes', (req, res) => {
     console.info(`${req.method} request received for notes`);
-    util.promisify(fs.readFile)('./db/db.json').then((data) => res.json(JSON.parse(data)));
+    readFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
 });
 
 //post request to add a new note to database
@@ -54,8 +56,23 @@ api.post('/notes', (req, res) => {
     }
 });
 
-api.delete('/notes', (req, res) => {
-    console.info(`${req.method} request received to delete a note`);
+api.delete(`/notes/:id`, (req, res) => {
+  var id = req.params.id;
+  fs.readFile('./db/db.json', 'utf8', (err, data) => {
+    const parsedNotes = JSON.parse(data);
+    const savedNotes = parsedNotes.filter(note => id !== note.id);
+    
+    fs.writeFile(
+      './db/db.json',
+      JSON.stringify(savedNotes, null, 4),
+      (writeErr) =>
+        writeErr
+          ? console.error(writeErr)
+          : console.info('Successfully deleted note!')
+    ); 
+
+  });
+
 });
 
 
