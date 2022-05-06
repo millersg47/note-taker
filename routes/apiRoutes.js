@@ -75,8 +75,6 @@ api.delete(`/notes/:id`, (req, res) => {
 
   res.json('Note deleted');
 
-  // api.get();
-
 });
 
 
