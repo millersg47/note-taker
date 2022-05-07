@@ -15,6 +15,8 @@
   ## Description
   This is a client-side application for a user to input notes for their to-do list, add descriptions and then revisti existing notes and delete them as they are accomplished. The application utilizes an Express.js backend server, flat file database to store the notes and a browser-friendly interface supported by Javascript. 
 
+  [View the deployed application here.](https://note-taker-sgm.herokuapp.com/)
+
   ![This is a screenshot of the home page of the application with a note taker title and a get started button.](./assets/note-taker-app.png)
   
   ## Installation
